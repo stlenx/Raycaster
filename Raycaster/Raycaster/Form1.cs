@@ -16,6 +16,7 @@ namespace Raycaster
     public partial class Form1 : Form
     {
 
+        private Ray ray;
         public Form1()
         {
             InitializeComponent();
@@ -23,42 +24,41 @@ namespace Raycaster
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            var t = new System.Threading.Thread(DoThisAllTheTime(e));
-            t.Start();
-        }
-
-        private void DoThisAllTheTime(PaintEventArgs e)
-        {
-            while (true)
-            {
-                MethodInvoker mi = delegate() { this.Text = DateTime.Now.ToString(); };
-                this.Invoke(mi);
-                var wall = new Boundary(300,100, 300,300, e);
-                var ray = new Ray(100,200, e);
-                var pt = ray.Cast(wall);
-                Console.WriteLine(pt);
-                wall.Draw();
-                ray.Draw();
-                var point = GetMousePositionWindowsForms();
-                ray.lookAt(point.X, point.Y);
-            }
-            // ReSharper disable once FunctionNeverReturns
+            var wall = new Boundary(300,100, 300,300, e);
+            ray = new Ray(100,200, e);
+            var pt = ray.Cast(wall);
+            Console.WriteLine(pt);
+            wall.Draw();
+            ray.Draw();
+            ray.LookAt(Position.X,Position.Y);
         }
 
         private void Form1_MouseClick(object sender, MouseEventArgs e)
         {
             
         }
-
-        private static Point GetMousePositionWindowsForms()
-        {
-            var point = Control.MousePosition;
-            return new Point(point.X, point.Y);
-        }
+        
 
         private void Form1_Load(object sender, EventArgs e)
         {
             
+        }
+
+        private void Form1_MouseMove(object sender, MouseEventArgs e)
+        {
+            Console.WriteLine(Position.X);
+            Console.WriteLine(Position.Y);
+            ray.LookAt(Position.X,Position.Y);
+        }
+
+        private void button1_MouseMove(object sender, MouseEventArgs e)
+        {
+            int R = e.X % 255;
+            int G = e.Y % 255;
+
+            int B = (R + G) / 2;
+
+            BackColor = Color.FromArgb(R, G, B);
         }
     }
 }

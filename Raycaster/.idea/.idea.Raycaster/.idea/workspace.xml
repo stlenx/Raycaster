@@ -81,14 +81,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1613405897090</updated>
-      <workItem from="1613405900810" duration="11216000" />
+      <workItem from="1613405900810" duration="11544000" />
+      <workItem from="1613431196723" duration="1069000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="UnityProjectConfiguration" hasMinimizedUI="null" />
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -100,27 +101,28 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1877" height="181" key="GridCell.Tab.0.bottom" timestamp="1613415562713">
+    <state width="1877" height="165" key="GridCell.Tab.0.bottom" timestamp="1613432229989">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="181" key="GridCell.Tab.0.bottom/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1613415562713" />
-    <state width="1877" height="181" key="GridCell.Tab.0.center" timestamp="1613415562713">
+    <state width="1877" height="165" key="GridCell.Tab.0.bottom/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1613432229989" />
+    <state width="1877" height="165" key="GridCell.Tab.0.center" timestamp="1613432229989">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="181" key="GridCell.Tab.0.center/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1613415562713" />
-    <state width="1877" height="181" key="GridCell.Tab.0.left" timestamp="1613415562713">
+    <state width="1877" height="165" key="GridCell.Tab.0.center/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1613432229989" />
+    <state width="1877" height="165" key="GridCell.Tab.0.left" timestamp="1613432229989">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="181" key="GridCell.Tab.0.left/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1613415562713" />
-    <state width="1877" height="181" key="GridCell.Tab.0.right" timestamp="1613415562713">
+    <state width="1877" height="165" key="GridCell.Tab.0.left/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1613432229989" />
+    <state width="1877" height="165" key="GridCell.Tab.0.right" timestamp="1613432229989">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="181" key="GridCell.Tab.0.right/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1613415562713" />
+    <state width="1877" height="165" key="GridCell.Tab.0.right/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1613432229989" />
     <state x="552" y="251" key="Rider.ProjectTemplateDialog.Size" timestamp="1613417202085">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

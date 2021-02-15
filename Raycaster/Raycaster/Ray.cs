@@ -17,7 +17,7 @@ namespace Raycaster
             dir = new Vector2(1, 0);
         }
 
-        public void lookAt(float x, float y)
+        public void LookAt(float x, float y)
         {
             dir.X = x - pos.X;
             dir.Y = y - pos.Y;
