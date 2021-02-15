@@ -23,8 +23,16 @@ namespace Raycaster
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
+            var t = new System.Threading.Thread(DoThisAllTheTime(e));
+            t.Start();
+        }
+
+        private void DoThisAllTheTime(PaintEventArgs e)
+        {
             while (true)
             {
+                MethodInvoker mi = delegate() { this.Text = DateTime.Now.ToString(); };
+                this.Invoke(mi);
                 var wall = new Boundary(300,100, 300,300, e);
                 var ray = new Ray(100,200, e);
                 var pt = ray.Cast(wall);
@@ -34,6 +42,7 @@ namespace Raycaster
                 var point = GetMousePositionWindowsForms();
                 ray.lookAt(point.X, point.Y);
             }
+            // ReSharper disable once FunctionNeverReturns
         }
 
         private void Form1_MouseClick(object sender, MouseEventArgs e)
@@ -45,6 +54,11 @@ namespace Raycaster
         {
             var point = Control.MousePosition;
             return new Point(point.X, point.Y);
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            
         }
     }
 }
