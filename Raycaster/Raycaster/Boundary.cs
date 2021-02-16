@@ -10,19 +10,20 @@ namespace Raycaster
     {
         public readonly Vector2 a;
         public readonly Vector2 b;
-        private readonly PaintEventArgs e;
+        public Bitmap g;
 
-        public Boundary(float x1, float y1, float x2, float y2, PaintEventArgs e)
+        public Boundary(float x1, float y1, float x2, float y2, Bitmap g)
         {
-            this.e = e;
+            this.g = g;
             a = new Vector2(x1, y1);
             b = new Vector2(x2, y2);
         }
 
-        public void Draw()
+        public void Draw(Bitmap B)
         {
-            var g = e.Graphics;
-            g.DrawLine(Pens.Black, a.X,a.Y,b.X,b.Y);
+            var gr = Graphics.FromImage(B);
+            gr.DrawLine(Pens.Black, a.X,a.Y,b.X,b.Y);
+            g = B;
         }
     }
 }

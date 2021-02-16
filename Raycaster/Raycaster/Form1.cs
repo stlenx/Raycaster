@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Media;
 using System.Security.Cryptography;
@@ -17,48 +18,41 @@ namespace Raycaster
     {
 
         private Ray ray;
+        private Boundary wall;
+        private Bitmap g;
         public Form1()
         {
             InitializeComponent();
+            g = new Bitmap(806, 479);
+            ray = new Ray(100,200, g);
+            wall = new Boundary(300,100, 300,300, g);
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            var wall = new Boundary(300,100, 300,300, e);
-            ray = new Ray(100,200, e);
+            g = new Bitmap(806, 479);
+            ray.Draw(g);
+            wall.Draw(g);
             var pt = ray.Cast(wall);
             Console.WriteLine(pt);
-            wall.Draw();
-            ray.Draw();
-            ray.LookAt(Position.X,Position.Y);
+            e.Graphics.DrawImage(ray.g,0,0);
+            e.Graphics.DrawImage(wall.g,0,0);
         }
 
         private void Form1_MouseClick(object sender, MouseEventArgs e)
         {
             
         }
-        
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            
-        }
 
         private void Form1_MouseMove(object sender, MouseEventArgs e)
         {
-            Console.WriteLine(Position.X);
-            Console.WriteLine(Position.Y);
-            ray.LookAt(Position.X,Position.Y);
+            ray.LookAt(e.X, e.Y);
+            this.Refresh();
         }
 
-        private void button1_MouseMove(object sender, MouseEventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
-            int R = e.X % 255;
-            int G = e.Y % 255;
-
-            int B = (R + G) / 2;
-
-            BackColor = Color.FromArgb(R, G, B);
+            ResizeRedraw = true;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Numerics;
 using System.Windows.Forms;
 
@@ -8,11 +9,11 @@ namespace Raycaster
     {
         private Vector2 pos;
         private Vector2 dir;
-        private readonly PaintEventArgs e;
+        public Bitmap g;
         
-        public Ray(float x, float y, PaintEventArgs e)
+        public Ray(float x, float y, Bitmap g)
         {
-            this.e = e;
+            this.g = g;
             pos = new Vector2(x,y);
             dir = new Vector2(1, 0);
         }
@@ -24,10 +25,11 @@ namespace Raycaster
             dir = Vector2.Normalize(dir);
         }
 
-        public void Draw()
+        public void Draw(Bitmap B)
         {
-            var g = e.Graphics;
-            g.DrawLine(Pens.Black, pos.X, pos.Y, pos.X + 10, pos.Y ); // HOLY SHIT PLEASE CHANGE THIS IN THE FUTURE
+            var gr = Graphics.FromImage(B);
+            gr.DrawLine(Pens.Black, pos.X, pos.Y, pos.X + (dir.X * 10), pos.Y + (dir.Y * 10)); // HOLY SHIT PLEASE CHANGE THIS IN THE FUTURE
+            g = B;
         }
 
         public object Cast(Boundary wall)
