@@ -20,14 +20,15 @@ namespace Raycaster
     {
         private Particle particle;
         private List<Boundary> walls = new List<Boundary>();
-        private Bitmap g;
         public static readonly int width = 806;
         public static readonly int height = 479;
+        private Graphics gr;
+        public static Bitmap g;
         public Form1()
         {
             InitializeComponent();
-            particle = new Particle();
             g = new Bitmap(width, height);
+            particle = new Particle();
             var rnd = new Random();
             for (var i = 0; i < 5; i++)
             {
@@ -42,13 +43,23 @@ namespace Raycaster
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             g = new Bitmap(width, height);
-            particle.Draw();
-            particle.Cast(walls, g);
+            gr = Graphics.FromImage(g);
             //~1ms
+
+            particle.Cast(walls); //~8ms
             
-            e.Graphics.DrawImage(particle.b,0,0); //~8ms
-            
-            var gr = Graphics.FromImage(g);
+            var scene = particle.scene;
+            if (scene.Count != 0)
+            {
+                var w = width / scene.Count;
+                for (var i = 0; i < scene.Count; i++)
+                {
+                    Console.WriteLine((int)scene[i]);
+                    var h = 255 - (int)scene[i];
+                    gr.FillRectangle(new SolidBrush(Color.FromArgb((int)scene[i],(int)scene[i],(int)scene[i])), new Rectangle(i * w, 200 - h/2, w, h));
+                }
+            }
+
             foreach (var pt in walls.Select(wall => wall.Draw())) //~10ms
             {
                 gr.DrawLine(Pens.Black, pt.X, pt.Y, pt.Z, pt.W);
@@ -63,13 +74,33 @@ namespace Raycaster
 
         private void Form1_MouseMove(object sender, MouseEventArgs e)
         {
-            particle.Update(e.X, e.Y);
-            this.Refresh();
+            //particle.Update(e.X, e.Y);
+            //Refresh();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             ResizeRedraw = true;
+        }
+
+        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            switch (e.KeyChar)
+            {
+                case 'd':
+                    particle.Rotate(0.1);
+                    break;
+                case 'a':
+                    particle.Rotate(-0.1);
+                    break;
+                case 'w':
+                    particle.Move(2);
+                    break;
+                case 's':
+                    particle.Move(-2);
+                    break;
+            }
+            Refresh();
         }
     }
 }

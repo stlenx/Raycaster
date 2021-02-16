@@ -8,13 +8,20 @@ namespace Raycaster
     public class Ray
     {
         public Vector2 pos;
-        private Vector2 dir;
-        public Bitmap g;
-        
+        public Vector2 dir;
+        public double angle;
+
         public Ray(Vector2 pos, double angle)
         {
             this.pos = pos;
-            dir = new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle));;
+            this.angle = angle;
+            dir = new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle));
+        }
+
+        public void SetAngle(float a)
+        {
+            angle = a;
+            dir = new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle));
         }
 
         public void LookAt(float x, float y)
