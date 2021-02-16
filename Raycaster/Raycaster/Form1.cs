@@ -56,7 +56,7 @@ namespace Raycaster
                 {
                     Console.WriteLine((int)scene[i]);
                     var h = 255 - (int)scene[i];
-                    gr.FillRectangle(new SolidBrush(Color.FromArgb((int)scene[i],(int)scene[i],(int)scene[i])), new Rectangle(i * w, 200 - h/2, w, h));
+                    gr.FillRectangle(new SolidBrush(Color.FromArgb(h,h,h)), new Rectangle(i * w, 200 - h/2, w, h));
                 }
             }
 

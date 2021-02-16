@@ -39,6 +39,7 @@ namespace Raycaster
             for (var i = -fov; i < fov; i += 1)
             {
                 rays[index].dir = new Vector2((float)Math.Cos((Math.PI / 180 * i) + heading), (float)Math.Sin((Math.PI / 180 * i) + heading));
+                //rays[index].angle = heading;
                 index++;
             }
         }
@@ -59,7 +60,7 @@ namespace Raycaster
             foreach (var ray in rays)
             {
                 var closest = new Vector2(0,0);
-                var record = float.MaxValue;
+                var record = 255f;
                 Console.WriteLine(record);
                 foreach (var pt in walls.Select(wall => ray.Cast(wall)))
                 {
@@ -67,12 +68,7 @@ namespace Raycaster
                     var d = Vector2.Distance(pos, pt.Value);
                     var a = ray.angle - heading;
                     a = Math.Cos(a);
-                    if (a < 0)
-                    {
-                        a *= -1;
-                    }
                     d *= (float) a;
-                    Console.WriteLine(Math.Cos(a));
                     if (!(d < record)) continue;
                     record = d;
                     closest = pt.Value;
