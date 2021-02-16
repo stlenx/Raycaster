@@ -7,15 +7,14 @@ namespace Raycaster
 {
     public class Ray
     {
-        private Vector2 pos;
+        public Vector2 pos;
         private Vector2 dir;
         public Bitmap g;
         
-        public Ray(float x, float y, Bitmap g)
+        public Ray(Vector2 pos, double angle)
         {
-            this.g = g;
-            pos = new Vector2(x,y);
-            dir = new Vector2(1, 0);
+            this.pos = pos;
+            dir = new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle));;
         }
 
         public void LookAt(float x, float y)
@@ -25,14 +24,14 @@ namespace Raycaster
             dir = Vector2.Normalize(dir);
         }
 
-        public void Draw(Bitmap B)
+        public void Draw(Bitmap b)
         {
-            var gr = Graphics.FromImage(B);
-            gr.DrawLine(Pens.Black, pos.X, pos.Y, pos.X + (dir.X * 10), pos.Y + (dir.Y * 10)); // HOLY SHIT PLEASE CHANGE THIS IN THE FUTURE
-            g = B;
+            var gr = Graphics.FromImage(b);
+            gr.DrawLine(Pens.Black, pos.X, pos.Y, pos.X + (dir.X * 10), pos.Y + (dir.Y * 10)); 
+            g = b;
         }
 
-        public object Cast(Boundary wall)
+        public Vector2? Cast(Boundary wall)
         {
             var x1 = wall.a.X;
             var y1 = wall.a.Y;
@@ -53,12 +52,9 @@ namespace Raycaster
             var u = -((x1 - x2) * (y1 - y3) - (y1 - y2) * (x1 - x3)) / den;
             if (t > 0 && t < 1 && u > 0)
             {
-                return true;
+                return new Vector2 {X = x1 + t * (x2 - x1), Y = y1 + t * (y2 - y1)};
             }
-            else
-            {
-                return null;
-            }
+            return null;
         }
     }
 }

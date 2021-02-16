@@ -18,6 +18,7 @@
             </e>
           </e>
         </e>
+        <e p="Particle.cs" t="Include" />
         <e p="Program.cs" t="Include" />
         <e p="Ray.cs" t="Include" />
         <e p="Raycaster.csproj" t="IncludeRecursive" />
