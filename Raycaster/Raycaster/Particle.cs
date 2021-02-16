@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Diagnostics;
+using System.Linq;
 using System.Numerics;
 
 namespace Raycaster
@@ -8,6 +10,7 @@ namespace Raycaster
     public class Particle
     {
         private Vector2 pos;
+        public Bitmap b;
         public readonly List<Ray> rays = new List<Ray>();
 
         public Particle()
@@ -19,7 +22,7 @@ namespace Raycaster
             }
         }
 
-        public void Update(float x, float y)
+        public void Update(float x, float y) //0ms
         {
             pos = new Vector2(x, y);
             foreach (var ray in rays)
@@ -51,11 +54,13 @@ namespace Raycaster
             }
         }
 
-        public void Draw(Bitmap b)
+        public void Draw() //0ms
         {
-            foreach (var ray in rays)
+            b = new Bitmap(Form1.width, Form1.height);
+            var gr = Graphics.FromImage(b);
+            foreach (var pt in rays.Select(ray => ray.Draw()))
             {
-                ray.Draw(b);
+                gr.DrawLine(Pens.Black, pos.X, pos.Y, pt.X,pt.Y);
             }
         }
     }

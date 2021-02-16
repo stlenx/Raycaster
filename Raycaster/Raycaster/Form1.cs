@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
@@ -34,26 +35,25 @@ namespace Raycaster
                 var x2 = rnd.Next(0, 600);
                 var y1 = rnd.Next(0, 600);
                 var y2 = rnd.Next(0, 600);
-                Console.WriteLine(x1 + " " + x2 + " " + y1 + " " + y2);
-                walls.Add(new Boundary(x1,y1,x2,y2,g));
+                walls.Add(new Boundary(x1,y1,x2,y2));
             }
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             g = new Bitmap(width, height);
-            particle.Draw(g);
+            particle.Draw();
             particle.Cast(walls, g);
-
-            foreach (var ray in particle.rays)
+            //~1ms
+            
+            e.Graphics.DrawImage(particle.b,0,0); //~8ms
+            
+            var gr = Graphics.FromImage(g);
+            foreach (var pt in walls.Select(wall => wall.Draw())) //~10ms
             {
-                e.Graphics.DrawImage(ray.g,0,0);
+                gr.DrawLine(Pens.Black, pt.X, pt.Y, pt.Z, pt.W);
             }
-            foreach (var wall in walls)
-            {
-                wall.Draw(g);
-                e.Graphics.DrawImage(wall.g,0,0);
-            }
+            e.Graphics.DrawImage(g, 0,0);
         }
 
         private void Form1_MouseClick(object sender, MouseEventArgs e)

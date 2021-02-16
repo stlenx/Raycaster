@@ -24,11 +24,10 @@ namespace Raycaster
             dir = Vector2.Normalize(dir);
         }
 
-        public void Draw(Bitmap b)
+        public Vector2 Draw()
         {
-            var gr = Graphics.FromImage(b);
-            gr.DrawLine(Pens.Black, pos.X, pos.Y, pos.X + (dir.X * 10), pos.Y + (dir.Y * 10)); 
-            g = b;
+            return new Vector2(pos.X + (dir.X * 10), pos.Y + (dir.Y * 10));
+            //gr.DrawLine(Pens.Black, pos.X, pos.Y, pos.X + (dir.X * 10), pos.Y + (dir.Y * 10)); 
         }
 
         public Vector2? Cast(Boundary wall)
