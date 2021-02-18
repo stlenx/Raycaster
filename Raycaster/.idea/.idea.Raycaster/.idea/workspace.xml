@@ -40,8 +40,8 @@
         <option value="$PROJECT_DIR$/Raycaster/Boundary.cs" />
         <option value="$PROJECT_DIR$/Raycaster/Form1.Designer.cs" />
         <option value="$PROJECT_DIR$/Raycaster/Ray.cs" />
-        <option value="$PROJECT_DIR$/Raycaster/Form1.cs" />
         <option value="$PROJECT_DIR$/Raycaster/Particle.cs" />
+        <option value="$PROJECT_DIR$/Raycaster/Form1.cs" />
       </list>
     </option>
   </component>
@@ -93,7 +93,8 @@
       <workItem from="1613471113607" duration="20018000" />
       <workItem from="1613496761031" duration="4851000" />
       <workItem from="1613507190013" duration="1105000" />
-      <workItem from="1613664422318" duration="9314000" />
+      <workItem from="1613664422318" duration="9416000" />
+      <workItem from="1613684909764" duration="2347000" />
     </task>
     <servers />
   </component>
@@ -118,22 +119,22 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1877" height="194" key="GridCell.Tab.0.bottom" timestamp="1613675189920">
+    <state width="1877" height="72" key="GridCell.Tab.0.bottom" timestamp="1613689224888">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="194" key="GridCell.Tab.0.bottom/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1613675189920" />
-    <state width="1877" height="194" key="GridCell.Tab.0.center" timestamp="1613675189920">
+    <state width="1877" height="72" key="GridCell.Tab.0.bottom/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1613689224888" />
+    <state width="1877" height="72" key="GridCell.Tab.0.center" timestamp="1613689224888">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="194" key="GridCell.Tab.0.center/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1613675189920" />
-    <state width="1877" height="194" key="GridCell.Tab.0.left" timestamp="1613675189920">
+    <state width="1877" height="72" key="GridCell.Tab.0.center/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1613689224888" />
+    <state width="1877" height="72" key="GridCell.Tab.0.left" timestamp="1613689224888">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="194" key="GridCell.Tab.0.left/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1613675189920" />
-    <state width="1877" height="194" key="GridCell.Tab.0.right" timestamp="1613675189920">
+    <state width="1877" height="72" key="GridCell.Tab.0.left/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1613689224888" />
+    <state width="1877" height="72" key="GridCell.Tab.0.right" timestamp="1613689224888">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="194" key="GridCell.Tab.0.right/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1613675189920" />
+    <state width="1877" height="72" key="GridCell.Tab.0.right/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1613689224888" />
     <state width="1877" height="375" key="GridCell.Tab.1.bottom" timestamp="1613496713901">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -202,9 +203,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="251" key="Rider.ProjectTemplateDialog.Size/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1613417202085" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1613673112272">
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1613685234785">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1613673112272" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1613685234785" />
   </component>
 </project>

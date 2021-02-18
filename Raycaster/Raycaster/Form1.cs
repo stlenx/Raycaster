@@ -20,8 +20,8 @@ namespace Raycaster
     {
         private Particle particle;
         private List<Boundary> walls = new List<Boundary>();
-        public static readonly int width = 806;
-        public static readonly int height = 479;
+        public static readonly int width = 1280;
+        public static readonly int height = 720;
         private Graphics gr;
         public static Bitmap g;
         private static float distProjPlane = 0;
@@ -48,18 +48,22 @@ namespace Raycaster
             gr = Graphics.FromImage(g);
             //~1ms
 
+            //particle.Draw();
+
             var scene = particle.Cast(walls);
             if (scene.Count != 0)
             {
                 var w = width / scene.Count;
                 for (var i = 0; i < scene.Count; i++)
                 {
-                    var b = Map(0, float.MaxValue, 255, 0, scene[i] * scene[i]);
+                    var b = Map(0, 10000, 255, 0, scene[i] * scene[i]);
+                    Console.WriteLine(b);
                     var h = (width / scene[i]) * distProjPlane;
-                    //gr.FillRectangle(new SolidBrush(Color.FromArgb((int) b,(int) b,(int) b)), 
-                    //    new Rectangle(i * w + w / 2, height / 2, w + 1, (int)h));
+                    gr.FillRectangle(new SolidBrush(Color.FromArgb((int) b,(int) b,(int) b)), 
+                        new Rectangle(i * w + w / 2, height / 2, w + 1, height / 2 - (int)scene[i]));
                 }
             }
+            
 
             foreach (var pt in walls.Select(wall => wall.Draw())) //~10ms
             {

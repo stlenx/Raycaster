@@ -61,25 +61,20 @@ namespace Raycaster
             foreach (var ray in rays)
             {
                 Vector2? closest = null;
-                var record = 10000d;
+                var record = 100d;
                 foreach (var pt in walls.Select(wall => ray.Cast(wall)))
                 {
                     if (pt == null)
-                    {
-                        Console.WriteLine(record);
-                    }
+                    { }
                     else
                     {
-                        Console.WriteLine(pt.Value.X + " - " + pt.Value.Y);
-                    
+
                         var d = Vector2.Distance(pos, pt.Value);
                     
                         var a = ray.angle - heading;
 
                         var b = d * Math.Cos(a);
                         if (b < 0) {b *= -1;}
-                    
-                        Console.WriteLine(b + " - " + record);
                         if (b < record)
                         {
                             record = b;

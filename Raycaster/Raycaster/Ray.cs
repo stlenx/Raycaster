@@ -31,10 +31,7 @@ namespace Raycaster
             dir = Vector2.Normalize(dir);
         }
 
-        public Vector2 Draw()
-        {
-            return new Vector2(pos.X + (dir.X * 10), pos.Y + (dir.Y * 10));
-        }
+        public Vector2 Draw() => new Vector2(pos.X + (dir.X * 10), pos.Y + (dir.Y * 10));
 
         public Vector2? Cast(Boundary wall)
         {
