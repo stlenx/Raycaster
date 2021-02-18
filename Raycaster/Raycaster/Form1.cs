@@ -24,6 +24,7 @@ namespace Raycaster
         public static readonly int height = 479;
         private Graphics gr;
         public static Bitmap g;
+        private static float distProjPlane = 0;
         public Form1()
         {
             InitializeComponent();
@@ -38,6 +39,7 @@ namespace Raycaster
                 var y2 = rnd.Next(0, 600);
                 walls.Add(new Boundary(x1,y1,x2,y2));
             }
+            distProjPlane = (float) (width / 2.0 / Math.Tan(Particle.fov / 2.0));
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
@@ -46,17 +48,16 @@ namespace Raycaster
             gr = Graphics.FromImage(g);
             //~1ms
 
-            particle.Cast(walls); //~8ms
-            
-            var scene = particle.scene;
+            var scene = particle.Cast(walls);
             if (scene.Count != 0)
             {
                 var w = width / scene.Count;
                 for (var i = 0; i < scene.Count; i++)
                 {
-                    Console.WriteLine((int)scene[i]);
-                    var h = 255 - (int)scene[i];
-                    gr.FillRectangle(new SolidBrush(Color.FromArgb(h,h,h)), new Rectangle(i * w, 200 - h/2, w, h));
+                    var b = Map(0, float.MaxValue, 255, 0, scene[i] * scene[i]);
+                    var h = (width / scene[i]) * distProjPlane;
+                    //gr.FillRectangle(new SolidBrush(Color.FromArgb((int) b,(int) b,(int) b)), 
+                    //    new Rectangle(i * w + w / 2, height / 2, w + 1, (int)h));
                 }
             }
 
@@ -102,5 +103,7 @@ namespace Raycaster
             }
             Refresh();
         }
+        
+        static double Map(double a1, double a2, double b1, double b2, double s) => b1 + (s - a1) * (b2 - b1) / (a2 - a1);
     }
 }

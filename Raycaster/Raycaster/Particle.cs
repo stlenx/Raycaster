@@ -11,13 +11,13 @@ namespace Raycaster
     public class Particle
     {
         private Vector2 pos;
-        private int fov = 45;
-        private double heading = 0;
-        public List<float> scene = new List<float>();
+        public const int fov = 45;
+        private double heading;
         public readonly List<Ray> rays = new List<Ray>();
 
         public Particle()
         {
+            heading = 0;
             pos = new Vector2(Form1.width / 2, Form1.height / 2);
             for (var i = -fov; i < fov; i += 1)
             {
@@ -42,6 +42,8 @@ namespace Raycaster
                 //rays[index].angle = heading;
                 index++;
             }
+            var gr = Graphics.FromImage(Form1.g);
+            gr.DrawLine(Pens.Red, pos.X, pos.Y, (float)Math.Cos((Math.PI / 180 * 0) + heading) * 20, (float)Math.Sin((Math.PI / 180 * 0) + heading) * 20);
         }
 
         public void Update(float x, float y) //0ms
@@ -53,31 +55,46 @@ namespace Raycaster
             }
         }
 
-        public void Cast(List<Boundary> walls)
+        public List<double> Cast(List<Boundary> walls)
         {
-            var b = Form1.g;
-            scene = new List<float>();
+            var scene = new List<double>();
             foreach (var ray in rays)
             {
-                var closest = new Vector2(0,0);
-                var record = 255f;
-                Console.WriteLine(record);
+                Vector2? closest = null;
+                var record = 10000d;
                 foreach (var pt in walls.Select(wall => ray.Cast(wall)))
                 {
-                    if (pt == null) continue;
-                    var d = Vector2.Distance(pos, pt.Value);
-                    var a = ray.angle - heading;
-                    a = Math.Cos(a);
-                    d *= (float) a;
-                    if (!(d < record)) continue;
-                    record = d;
-                    closest = pt.Value;
+                    if (pt == null)
+                    {
+                        Console.WriteLine(record);
+                    }
+                    else
+                    {
+                        Console.WriteLine(pt.Value.X + " - " + pt.Value.Y);
+                    
+                        var d = Vector2.Distance(pos, pt.Value);
+                    
+                        var a = ray.angle - heading;
+
+                        var b = d * Math.Cos(a);
+                        if (b < 0) {b *= -1;}
+                    
+                        Console.WriteLine(b + " - " + record);
+                        if (b < record)
+                        {
+                            record = b;
+                            closest = pt.Value;
+                        }
+                    }
                 }
                 scene.Add(record);
-                if (closest.X == 0 && closest.Y == 0) continue;
-                var gr = Graphics.FromImage(b);
-                gr.DrawLine(Pens.Black, pos.X, pos.Y, closest.X, closest.Y);
+                if (closest != null)
+                {
+                    var gr = Graphics.FromImage(Form1.g);
+                    gr.DrawLine(Pens.Black, pos.X, pos.Y, closest.Value.X, closest.Value.Y);
+                }
             }
+            return scene;
         }
 
         public void Draw() //0ms

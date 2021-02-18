@@ -21,7 +21,7 @@ namespace Raycaster
         public void SetAngle(float a)
         {
             angle = a;
-            dir = new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle));
+            dir = new Vector2((float)Math.Cos(a), (float)Math.Sin(a));
         }
 
         public void LookAt(float x, float y)
@@ -34,7 +34,6 @@ namespace Raycaster
         public Vector2 Draw()
         {
             return new Vector2(pos.X + (dir.X * 10), pos.Y + (dir.Y * 10));
-            //gr.DrawLine(Pens.Black, pos.X, pos.Y, pos.X + (dir.X * 10), pos.Y + (dir.Y * 10)); 
         }
 
         public Vector2? Cast(Boundary wall)
