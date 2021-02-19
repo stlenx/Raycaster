@@ -39,7 +39,6 @@ namespace Raycaster
                 var y2 = rnd.Next(0, 600);
                 walls.Add(new Boundary(x1,y1,x2,y2));
             }
-            distProjPlane = (float) (width / 2.0 / Math.Tan(Particle.fov / 2.0));
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
@@ -56,11 +55,22 @@ namespace Raycaster
                 var w = width / scene.Count;
                 for (var i = 0; i < scene.Count; i++)
                 {
-                    var b = Map(0, 10000, 255, 0, scene[i] * scene[i]);
-                    Console.WriteLine(b);
-                    var h = (width / scene[i]) * distProjPlane;
+                    var sq = scene[i] * scene[i];
+                    var wSq = width * width;
+                    //var s = (sq) / 100;
+                    
+                    var b = Map(0, wSq, 255, 0, sq);
+                    if (sq > 50000) {b = 0d;}
+                    
+                    var h = ((width / scene[i]) );
+                    Console.WriteLine(h);
+                    if (sq == 1000000) {h = 50d;}
+                    
+                    var l = (height / 2);
+                    var y = l - h / 2;
+
                     gr.FillRectangle(new SolidBrush(Color.FromArgb((int) b,(int) b,(int) b)), 
-                        new Rectangle(i * w + w / 2, height / 2, w + 1, height / 2 - (int)scene[i]));
+                        new Rectangle(i * w + w, (int)y, w + 1, (int)h));
                 }
             }
             

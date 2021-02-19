@@ -30,6 +30,7 @@ namespace Raycaster
             var vel = new Vector2((float)Math.Cos(heading), (float)Math.Sin(heading));
             vel = Vector2.Normalize(vel) * amt;
             pos += vel;
+            Update();
         }
 
         public void Rotate(double angle)
@@ -46,14 +47,7 @@ namespace Raycaster
             gr.DrawLine(Pens.Red, pos.X, pos.Y, (float)Math.Cos((Math.PI / 180 * 0) + heading) * 20, (float)Math.Sin((Math.PI / 180 * 0) + heading) * 20);
         }
 
-        public void Update(float x, float y) //0ms
-        {
-            pos = new Vector2(x, y);
-            foreach (var ray in rays)
-            {
-                ray.pos = new Vector2(x, y);
-            }
-        }
+        public void Update() => rays.ForEach(ray=>ray.pos=this.pos);
 
         public List<double> Cast(List<Boundary> walls)
         {
@@ -61,14 +55,13 @@ namespace Raycaster
             foreach (var ray in rays)
             {
                 Vector2? closest = null;
-                var record = 100d;
+                var record = 1000d;
                 foreach (var pt in walls.Select(wall => ray.Cast(wall)))
                 {
                     if (pt == null)
                     { }
                     else
                     {
-
                         var d = Vector2.Distance(pos, pt.Value);
                     
                         var a = ray.angle - heading;
