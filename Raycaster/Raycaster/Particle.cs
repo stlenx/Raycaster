@@ -63,7 +63,7 @@ namespace Raycaster
                     else
                     {
                         var d = Vector2.Distance(pos, pt.Value);
-                    
+                        
                         var a = ray.angle - heading;
 
                         var b = d * Math.Cos(a);
